@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
 
 // Variables
 @import "variables";
@@ -8,7 +8,30 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+@font-face{
+  font-family: 'Rabbit on the Moon';
+  src: url('/css/DKRabbitOnTheMoon.otf');
 }
+
+.header-title{
+  font-family: "Rabbit on the Moon";
+}
+
+.theme-font{
+  font-family: "Rabbit on the Moon";
+}
+
+
+.navbar-collapse{
+  padding: 0px;
+}
+
+.navbar-nav .nav-item{
+  margin: 0px;
+}
+
+.navbar-nav .nav-item:hover{
+  background-color: #ec9a0a;
+}
+
