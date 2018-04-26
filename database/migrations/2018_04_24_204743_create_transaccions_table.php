@@ -15,6 +15,10 @@ class CreateTransaccionsTable extends Migration
     {
         Schema::create('transaccions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tipo');
+            $table->decimal('amount',8,2);
+            $table->unsignedInteger('cuenta_id');
+            $table->foreign('cuenta_id')->references('id')->on('cuentas');
             $table->timestamps();
         });
     }
