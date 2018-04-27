@@ -8,7 +8,7 @@ class Cliente extends Model
 {
     //
 
-     function __construct($nombre, $apellido, $fecha, $attributes = array())
+    public function __construct($nombre, $apellido, $fecha, $attributes = array())
     {
         parent::__construct($attributes);
         $this->nombre = $nombre;
@@ -22,6 +22,10 @@ class Cliente extends Model
 
     public function cuentas(){
         return $this->hasMany('App\Cuenta');
+    }
+
+    public function tarjeta(){
+        return $this->hasOne('App\Tarjeta');
     }
 
 }

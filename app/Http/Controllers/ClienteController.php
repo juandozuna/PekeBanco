@@ -39,7 +39,7 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         //TODO: Mostar formulario para crear un cliente nuevo
     }
 
@@ -81,7 +81,8 @@ class ClienteController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * THis will only update basic information, nothing.
+     * related to the accounts related to this user.
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -92,11 +93,23 @@ class ClienteController extends Controller
 
         //Buscar  cliente
         $cliente = Cliente::findOrFail($id);
-        if($cliente == null) return;
+        if($cliente == null) return response("El cliente no fue encontrado", 404);
 
         $cliente->nombre = $request->nombre;
         $cliente->apellido = $request->apellido;
         $cliente->fecha_nacimiento = $request->fecha;
+
+        return $cliente;
+    }
+
+    public function createAccount(Request $request, $id){
+        $cliente = Cliente::findOrFail($id);
+        if($cliente == null) return;
+
+        $cuenta = new Cuenta($id, $request->balance);
+        $cuenta->save();
+        return $cuenta;
+
     }
 
     /**
@@ -108,7 +121,7 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         $cliente = Cliente::findOrFail($id);
-        if($cliente == null) return;
+        if($cliente == null) return response("El cliente no fue encontrado", 404);
 
         $cliente->trashed = true;
 

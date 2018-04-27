@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cuenta extends Model
 {
-    function __construct($clienteId, $balance,  $attributes = array())
+    public function __construct($clienteId, $balance,  $attributes = array())
     {
         parent::__construct($attributes);
         $this->cliente_id = $clienteId;
@@ -20,10 +20,6 @@ class Cuenta extends Model
 
     public function transacciones(){
         return $this->hasMany('App\Trasaccion');
-    }
-
-    public function tarjetas(){
-        return $this->hasMany('App\Tarjeta');
     }
 
 
