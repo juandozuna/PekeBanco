@@ -12,6 +12,6 @@ class CuentaSeeder extends Seeder
     public function run()
     {
         //
-        factory(App\Cuenta::class, 14)->create();
+        factory(App\Cuenta::class, 35)->create();
     }
 }

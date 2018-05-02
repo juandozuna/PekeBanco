@@ -20,13 +20,7 @@
 <br>
 <div class="row text-center">
     <div class="col"> 
-        <a href="#" class="btn btn-secondary btn-block btn-home">Clientes </a>
-    </div>
-    <div class="col"> 
-        <a href="#" class="btn btn-secondary btn-block btn-home">Cuentas</a>
-    </div>
-    <div class="col"> 
-        <a href="#" class="btn btn-secondary btn-block btn-home">Transacciones</a>
+        <a href="{{ route('clientes.index') }}" class="btn btn-secondary btn-block btn-home">Crear Cliente </a>
     </div>
 </div>
 

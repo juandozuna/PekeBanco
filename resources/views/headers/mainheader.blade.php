@@ -1,9 +1,11 @@
 
 
 <div class="text-center w-100 header-title" style="background-color: #ffe59a">
-    <h1 class="display-2 d-inline align-middle text-danger">Peke</h1>
-    <img src="imgs/Logo.png" alt="" height="90">
-    <h1 class="display-2 d-inline align-middle text-secondary">Banco</h1>
+    <a href="{{URL::to('/')}}">
+        <h1 class="display-2 d-inline align-middle text-danger">Peke</h1>
+        <img src="{{URL::to('imgs/Logo.png')}}" alt="" height="90">
+        <h1 class="display-2 d-inline align-middle text-secondary">Banco</h1>
+    </a>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between static-top">
@@ -33,7 +35,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
                 <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">Crear Cliente</a>
+                    <a href="{{route('clientes.index')}}" class="dropdown-item">Listar Clientes</a>
                     <a href="#" class="dropdown-item">Modificar Cliente</a>
                     <a href="#" class="dropdown-item">Borrar Cliente</a>
                     <a href="#" class="dropdown-item">Abrir cuenta a Cliente</a>

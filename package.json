@@ -17,11 +17,13 @@
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
         "popper.js": "^1.12",
-        "vue": "^2.5.7"
+        "vue": "^2.5.16"
     },
     "dependencies": {
+        "datatables.net-bs4": "^1.10.16",
         "materialize-css": "^0.100.2",
         "vue-meta": "^1.5.0",
-        "vue-router": "^3.0.1"
+        "vue-router": "^3.0.1",
+        "vueify": "^9.4.1"
     }
 }

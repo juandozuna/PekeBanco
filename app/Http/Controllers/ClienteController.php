@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Tarjeta;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Cliente;
 use App\Cuenta;
@@ -16,8 +18,8 @@ class ClienteController extends Controller
     public function index()
     {
         //TODO: Retornar listado de todos los clientes
-        $clientes = Cliente::all();
-        return view('clientes.index', ['clientes' => $clientes]);
+        $clientes = Cliente::with('cuentas')->with('tarjeta')->get();
+        return $clientes->toJson();
     }
 
 
@@ -30,8 +32,14 @@ class ClienteController extends Controller
     public function show($id)
     {
         //TODO: Ver Perfil de un solo cliente
-        $cliente = Cliente::findOrFail($id);
-        return view('clientes.detail', ['cliente' => $cliente ]);
+        try {
+            $i = Crypt::decryptString($id);
+            $cliente = Cliente::findOrFail($i);
+            return view('clientes.show', ['cliente' => $cliente]);
+        }
+        catch(DecryptException $e) {
+            return  redirect()->route('clientes.index');
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -51,6 +59,13 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tarjeta' => 'required|unique',
+            'balance' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required'
+        ]);
+
         //TODO: Agregar cliente nuevo a la base de datos.
         $nombre = $request->nombre;
         $apellido = $request->apellido;
@@ -60,9 +75,15 @@ class ClienteController extends Controller
         $cliente->save();
         $cid = $cliente->id;
 
+        $tarjeta = new Tarjeta();
+        $tarjeta->codigoTarjeta = $request->tarjeta;
+        $tarjeta->cliente_id = $cliente->id;
+        $tarjeta->save();
         //TODO: Abrir una cuenta automaticamente para el nuevo cliente
         $cuenta = new Cuenta($cid, $request->balance);
         $cuenta->save();
+
+        return $cliente->with('cuentas')->with('tarjeta')->get()->toJson();
 
     }
 

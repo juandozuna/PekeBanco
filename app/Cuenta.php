@@ -6,20 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cuenta extends Model
 {
-    public function __construct($clienteId, $balance,  $attributes = array())
+    /*public function __construct($clienteId, $balance,  $attributes = array())
     {
         parent::__construct($attributes);
         $this->cliente_id = $clienteId;
         $this->balance = $balance;
         $this->crearNumeroCuenta();
     }
+    */
+
 
     public function cliente(){
         return $this->belongsTo('App\Cliente');
     }
 
     public function transacciones(){
-        return $this->hasMany('App\Trasaccion');
+        return $this->hasMany('App\Transaccion');
     }
 
 

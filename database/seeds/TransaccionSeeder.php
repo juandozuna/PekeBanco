@@ -11,7 +11,7 @@ class TransaccionSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Transaccion::class, 40)->create()->each(function($t){
+        factory(App\Transaccion::class, 70)->create()->each(function($t){
             $c = $t->cuenta;
             
             if($t->tipo == "Retiro")

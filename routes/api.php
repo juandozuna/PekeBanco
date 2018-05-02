@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::prefix('clientes')->group(function(){
+   Route::get('all', 'ClienteController@index');
+});
+
+Route::get('cuenta/{id}', function($id){
+   $cuenta = App\Cuenta::with('transacciones')->findOrFail($id);
+   return $cuenta;
+});
+
+
+Route::post('cliente', 'ClienteController@store');
+
+Route::post('cuenta', 'CuentaController@store');

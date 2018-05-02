@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use Illuminate\Http\Request;
 use App\Cuenta;
 use App\Transaccion;
+
+define('NUMERO_LIMITE_DE_CUENTAS', 3);
 
 class CuentaController extends Controller
 {
@@ -25,6 +28,20 @@ class CuentaController extends Controller
         $cuenta->delete();
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     */
+    public function store(Request $request, $id){
+        $cliente = Cliente::findOrFail($id);
+        if($cliente == null) return response('La operacion no ha sido posible', 404);
+
+        //TODO: Establecer el número máximo de cuentas posibles por cliente
+        if( count($cliente->cuentas) > NUMERO_LIMITE_DE_CUENTAS){
+
+        }
+
+    }
 
     /** 
     * Este metodo se ocupa del manejo y registro de las transacciones 
@@ -42,8 +59,12 @@ class CuentaController extends Controller
         
         switch($tipo){
             case 'r':
-                $cuenta->balance -= $amount;
-                $transaccion->tipo = "Retiro";
+                if($amount < $cuenta->balance) {
+                    $cuenta->balance -= $amount;
+                    $transaccion->tipo = "Retiro";
+                }else{
+                    return Response()->json(['error'=> 'No tiene suficientes fondos para hacer el retiro de '.$amount.' PEKOS'], 404);
+                }
                 break;
             case 'd':
                 $cuenta->balance += $amount;
@@ -54,10 +75,29 @@ class CuentaController extends Controller
         }
         
         $transaccion->cuenta_id = $cuenta->id;
+        $transaccion->balance = $cuenta->balance;
         $transaccion->amount = $amount;
         
         $transaccion->save();
         $cuenta->save();
         return response()->json(['cuenta' => $cuenta, 'transaccion' => $transaccion]);
+    }
+
+
+    public function RetirarTodo($id)
+    {
+        $cuenta = Cuenta::findOrFail($id);
+        if ($cuenta == null) return response('la cuenta no fue encontrada', 404);
+
+        $tipo = 'Retiro';
+        $amount = $cuenta->balance;
+        $cuenta->balance = 0;
+
+        $transaccion = new Transaccion();
+        $transaccion->balance = $amount;
+        $transaccion->tipo = $tipo;
+        $transaccion->amount = $amount;
+        $transaccion->save();
+        return $transaccion;
     }
 }

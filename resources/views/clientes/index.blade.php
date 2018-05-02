@@ -6,6 +6,20 @@
 
 @section('content')
 
-   <client-list></client-list>
+ <div id="app">
+   <clients></clients>
+ </div>
+
+@endsection
+
+@section('scripts')
+
+    <script>
+
+       /* $(document).ready(function () {
+            $('#table').DataTable();
+        })*/
+
+    </script>
 
 @endsection

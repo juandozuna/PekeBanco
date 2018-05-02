@@ -13,7 +13,9 @@ class AddTrashedAttribute extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('clientes', function(Blueprint $table){
+            $table->boolean('trashed');
+        });
     }
 
     /**

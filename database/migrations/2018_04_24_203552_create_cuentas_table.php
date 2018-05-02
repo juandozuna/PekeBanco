@@ -16,7 +16,7 @@ class CreateCuentasTable extends Migration
         Schema::create('cuentas', function (Blueprint $table) {
             $table->increments('id');
             $table->float('balance');
-
+            $table->string('numero_cuenta')->unique();
             $table->unsignedInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
 

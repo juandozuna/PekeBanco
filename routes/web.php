@@ -19,3 +19,12 @@ Route::get('/', function(){
 Auth::routes();
 
 
+Route::prefix('clientes')->group(function(){
+    Route::get('/', function(){
+        return view('clientes.index');
+    })->name('clientes.index');
+
+    Route::get('{id}/perfil', 'ClienteController@show');
+});
+
+
