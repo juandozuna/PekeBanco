@@ -86,11 +86,13 @@
             },
             cerrar(){
 
+                this.$eventHub.$emit('show-cerrar-cuenta-modal', this.cuenta);
             }
 
         },
         mounted(){
             this.$eventHub.$on('activar-cuenta', this.getCuenta);
+            this.$eventHub.$on('transaccion-terminada', this.getCuenta);
         }
     }
 </script>

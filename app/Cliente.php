@@ -8,7 +8,8 @@ class Cliente extends Model
 {
     //
 
-    /*p
+
+    /*
     public function __construct($nombre = '', $apellido = '', $fecha = null, $attributes = array())
     {
         parent::__construct($attributes);
@@ -16,7 +17,8 @@ class Cliente extends Model
         $this->apellido = $apellido;
         $this->fecha_nacimiento = $fecha;
     }
-    */
+*/
+
 
     protected $hidden = ['created_at', 'updated_at'];
 

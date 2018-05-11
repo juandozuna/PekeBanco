@@ -24,7 +24,12 @@ Route::prefix('clientes')->group(function(){
         return view('clientes.index');
     })->name('clientes.index');
 
-    Route::get('{id}/perfil', 'ClienteController@show');
+    Route::get('{id}/perfil', 'ClienteController@show')->name('cliente.show');
+    Route::get('{id}/cuenta', 'CuentaController@create')->name('cliente.nueva.cuenta');
+    Route::post('{id}/cuenta', 'CuentaController@store');
 });
+
+
+
 
 

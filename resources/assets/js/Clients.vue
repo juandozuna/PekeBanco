@@ -78,7 +78,7 @@
 
 
                     $('#table').DataTable();
-                }, 500)
+                }, 800)
             });
         },
         mounted(){

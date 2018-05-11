@@ -30,4 +30,6 @@ Route::get('cuenta/{id}', function($id){
 
 Route::post('cliente', 'ClienteController@store');
 
-Route::post('cuenta', 'CuentaController@store');
+
+Route::post('cuenta/{id}', 'CuentaController@transaccion');
+Route::delete('cuenta/{id}/cerrar', 'CuentaController@close');

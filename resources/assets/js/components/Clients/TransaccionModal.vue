@@ -18,7 +18,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="reset">Close</button>
                     <button type="button" class="btn btn-primary" @click="submit">Save changes</button>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 tipo: '',
                 idCuenta: '',
                 numCuenta: '',
-                cantidad: 4
+                cantidad: 0
             }
         },
         computed: {
@@ -67,7 +67,31 @@
                 $('#transaccion-modal').modal('show');
             },
             submit(){
+                this.transaccion();
+            },
+            transaccion(){
+                let data = {
+                    amount: this.cantidad,
+                    tipo: (this.tipo == "Retiro") ? 'r' : 'd',
+                };
+                console.log(data);
+                let heads = {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                };
+                axios.post(`/api/cuenta/${this.idCuenta}`, data, {headers: heads})
+                .then((resp) => {
+                    this.$eventHub.$emit('transaccion-terminada', this.idCuenta);
+                     $('#transaccion-modal').modal('hide');
+                })
+                .catch((err) => console.log(err.data));
 
+            },
+            reset(){
+                this.texto = '';
+                this.tipo = '';
+                this.idCuenta = '';
+                this.numCuenta = '';
+                this.cantidad = 0;
             }
         },
         created(){

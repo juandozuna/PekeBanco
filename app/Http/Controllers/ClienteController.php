@@ -5,6 +5,8 @@ use App\Tarjeta;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Cache;
 use App\Cliente;
 use App\Cuenta;
 
@@ -18,8 +20,11 @@ class ClienteController extends Controller
     public function index()
     {
         //TODO: Retornar listado de todos los clientes
-        $clientes = Cliente::with('cuentas')->with('tarjeta')->get();
-        return $clientes->toJson();
+        $result = Cache::remember('clientes', 5, function (){
+            $clientes = Cliente::with('cuentas')->with('tarjeta')->get();
+            return $clientes->toJson();
+        });
+        return $result;
     }
 
 

@@ -8,6 +8,7 @@
 
 <div id="singleClient">
     <transaccion-modal></transaccion-modal>
+    <cerrar-cuenta-modal></cerrar-cuenta-modal>
     <br>
     <h1 class="display-4 text-center text-secondary theme-font">Perfil Cliente</h1>
     <h1 class="theme-font text-center text-primary">{{$cliente->nombre_completo()}} </h1>
@@ -27,6 +28,7 @@
                        &nbsp;&nbsp; <button class="btn btn-outline-primary" v-on:click="activarCuenta({{$cuenta->id}})">Activar</button>
                     </div>
                 @endforeach
+                <a href="{{route('cliente.nueva.cuenta',['id' => $cliente->hashed_id])}}" class="btn btn-secondary text-center float-right">Crear Cuenta Nueva</a>
             </div>
         </div>
         <div class="col">

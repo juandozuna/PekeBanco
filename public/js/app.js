@@ -377,33 +377,6 @@ module.exports = {
 /* 1 */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -483,7 +456,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -711,7 +684,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -817,6 +790,33 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -11757,7 +11757,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(59);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
@@ -11813,7 +11813,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(16)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(19)
 /* template */
@@ -11866,7 +11866,7 @@ var content = __webpack_require__(17);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("78e561f2", content, false, {});
+var update = __webpack_require__(2)("78e561f2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -11885,7 +11885,7 @@ if(false) {
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
@@ -12008,7 +12008,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             setTimeout(function () {
 
                 $('#table').DataTable();
-            }, 500);
+            }, 800);
         });
     },
     mounted: function mounted() {}
@@ -29288,7 +29288,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(23)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(23)(module)))
 
 /***/ }),
 /* 23 */
@@ -56610,7 +56610,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(46).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(46).setImmediate))
 
 /***/ }),
 /* 46 */
@@ -56680,7 +56680,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 47 */
@@ -56873,7 +56873,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(8)))
 
 /***/ }),
 /* 48 */
@@ -56886,6 +56886,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Clients_ClienteCuentaInfo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Clients_ClienteCuentaInfo__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Clients_TransaccionModal__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Clients_TransaccionModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Clients_TransaccionModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Clients_CerrarCuentaModal__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Clients_CerrarCuentaModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Clients_CerrarCuentaModal__);
+
 
 
 
@@ -56893,7 +56896,8 @@ var singleClinet = new Vue({
     el: '#singleClient',
     components: {
         ClienteCuentaInfo: __WEBPACK_IMPORTED_MODULE_0__components_Clients_ClienteCuentaInfo___default.a,
-        TransaccionModal: __WEBPACK_IMPORTED_MODULE_1__components_Clients_TransaccionModal___default.a
+        TransaccionModal: __WEBPACK_IMPORTED_MODULE_1__components_Clients_TransaccionModal___default.a,
+        CerrarCuentaModal: __WEBPACK_IMPORTED_MODULE_2__components_Clients_CerrarCuentaModal___default.a
     },
     data: {
         selectedId: 0
@@ -56915,7 +56919,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(50)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(52)
 /* template */
@@ -56968,7 +56972,7 @@ var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("11774208", content, false, {});
+var update = __webpack_require__(2)("11774208", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -56987,7 +56991,7 @@ if(false) {
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
@@ -57087,10 +57091,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: this.cuenta.id
             });
         },
-        cerrar: function cerrar() {}
+        cerrar: function cerrar() {
+
+            this.$eventHub.$emit('show-cerrar-cuenta-modal', this.cuenta);
+        }
     },
     mounted: function mounted() {
         this.$eventHub.$on('activar-cuenta', this.getCuenta);
+        this.$eventHub.$on('transaccion-terminada', this.getCuenta);
     }
 });
 
@@ -57234,7 +57242,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(55)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(57)
 /* template */
@@ -57287,7 +57295,7 @@ var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("29dee2a1", content, false, {});
+var update = __webpack_require__(2)("29dee2a1", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -57306,12 +57314,12 @@ if(false) {
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57359,7 +57367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tipo: '',
             idCuenta: '',
             numCuenta: '',
-            cantidad: 4
+            cantidad: 0
         };
     },
 
@@ -57386,7 +57394,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.idCuenta = obj.id;
             $('#transaccion-modal').modal('show');
         },
-        submit: function submit() {}
+        submit: function submit() {
+            this.transaccion();
+        },
+        transaccion: function transaccion() {
+            var _this = this;
+
+            var data = {
+                amount: this.cantidad,
+                tipo: this.tipo == "Retiro" ? 'r' : 'd'
+            };
+            console.log(data);
+            var heads = {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            };
+            axios.post('/api/cuenta/' + this.idCuenta, data, { headers: heads }).then(function (resp) {
+                _this.$eventHub.$emit('transaccion-terminada', _this.idCuenta);
+                $('#transaccion-modal').modal('hide');
+            }).catch(function (err) {
+                return console.log(err.data);
+            });
+        },
+        reset: function reset() {
+            this.texto = '';
+            this.tipo = '';
+            this.idCuenta = '';
+            this.numCuenta = '';
+            this.cantidad = 0;
+        }
     },
     created: function created() {
         this.$eventHub.$on('transaccion', this.abrir);
@@ -57480,7 +57515,8 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-secondary",
-                  attrs: { type: "button", "data-dismiss": "modal" }
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: { click: _vm.reset }
                 },
                 [_vm._v("Close")]
               ),
@@ -57531,6 +57567,286 @@ if (false) {
 
 /***/ }),
 /* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(60)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(62)
+/* template */
+var __vue_template__ = __webpack_require__(63)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-ec26d138"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Clients/CerrarCuentaModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ec26d138", Component.options)
+  } else {
+    hotAPI.reload("data-v-ec26d138", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(61);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6103457e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ec26d138\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CerrarCuentaModal.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ec26d138\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CerrarCuentaModal.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'cerrar-cuenta-modal',
+    data: function data() {
+        return {
+            cuenta: {}
+        };
+    },
+
+    methods: {
+        showModal: function showModal() {
+            $('#cerrar-cuenta-modal').modal('show');
+        },
+        hideModal: function hideModal() {
+            $('#cerrar-cuenta-modal').modal('hide');
+        },
+        loadModal: function loadModal(obj) {
+            this.cuenta = obj;
+            this.showModal();
+        },
+        reset: function reset() {
+            this.cuenta = {};
+            this.hideModal();
+        },
+        submit: function submit() {
+            var _this = this;
+
+            axios.delete('/api/cuenta/' + this.cuenta.id + '/cerrar').then(function (resp) {
+                _this.hideModal();
+                _this.$emit('cerrada-exitosa');
+                location.reload();
+            }).catch(function (err) {
+                return console.log(err.data);
+            });
+        }
+    },
+    created: function created() {
+        this.$eventHub.$on('show-cerrar-cuenta-modal', this.loadModal);
+    }
+});
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "cerrar-cuenta-modal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalCenterTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c(
+                "h5",
+                {
+                  staticClass: "modal-title",
+                  attrs: { id: "exampleModalCenterTitle" }
+                },
+                [_vm._v("Cerrar Cuenta: " + _vm._s(_vm.cuenta.numero_cuenta))]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("h2", { staticClass: "text-center" }, [
+                _vm._v(" Esta seguro de que quiere cerrar esta cuenta?")
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", { staticClass: "text-center theme-font text-primary" }, [
+                _vm._v("La cuenta tiene un balance de "),
+                _c("span", { staticClass: "text-secondary" }, [
+                  _vm._v(
+                    _vm._s(
+                      Number(_vm.cuenta.balance)
+                        .toFixed(2)
+                        .replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                    ) + " PEKOS "
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: { click: _vm.reset }
+                },
+                [_vm._v("Cerrar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.submit }
+                },
+                [_vm._v("Cerrar Cuenta")]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ec26d138", module.exports)
+  }
+}
+
+/***/ }),
+/* 64 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
